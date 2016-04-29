@@ -45,15 +45,19 @@ require( "pry-byebug" )
 
 
 def item_at_bay( bay )
+  
   for shelf in WAREHOUSE_BAY
     return shelf[:item] if shelf[:shelf] == bay
   end
+
 end
 
 def bay_return_item( item )
+  
   for shelf in WAREHOUSE_BAY
     return shelf[:shelf] if shelf[:item] == item
   end
+
 end
 
 def list_of_bays( bay_one, bay_two, bay_three )
@@ -99,6 +103,101 @@ def list_of_items( item_one, item_two , item_three)
 end
 
 
+def bays_items_distance_calculate( bay_one, bay_two, bay_three, bay_four=nil)
+
+    search_bay = []
+    index_number = []
+  #binding.pry
+    i = 0
+    #binding.pry
+    while i < WAREHOUSE_BAY.length
+
+      if ( WAREHOUSE_BAY[i][:shelf] == bay_one )
+        search_bay << WAREHOUSE_BAY[i][:item]
+        index_number << WAREHOUSE_BAY.rindex(WAREHOUSE_BAY[i])
+      elsif ( WAREHOUSE_BAY[i][:shelf] == bay_three)
+        search_bay << WAREHOUSE_BAY[i][:item]
+        index_number << WAREHOUSE_BAY.rindex(WAREHOUSE_BAY[i])
+      elsif ( WAREHOUSE_BAY[i][:shelf] == bay_two)
+        search_bay << WAREHOUSE_BAY[i][:item]
+        index_number << WAREHOUSE_BAY.rindex(WAREHOUSE_BAY[i])
+      elsif bay_four != nil
+        if ( WAREHOUSE_BAY[i][:shelf] == bay_four)
+          search_bay << WAREHOUSE_BAY[i][:item]
+          index_number << WAREHOUSE_BAY.rindex(WAREHOUSE_BAY[i])
+        end
+        
+      end
+     
+      i += 1
+
+
+    end
+
+    max_number = index_number.max
+    min_number = index_number.min
+
+    bays_apart = max_number - min_number
+    
+    array_to_string = search_bay * (", ")
+    return  "#{array_to_string}, they're #{bays_apart} bays apart"
+end
+
+
+def items_find_bays_and_order_from_entrance(item_one, item_two, item_three, item_four=nil)
+  
+
+    search_bay = []
+    index_number = []
+    bays = []
+    bays_in_order = []
+  #binding.pry
+    i = 0
+    #binding.pry
+    while i < WAREHOUSE_BAY.length
+
+      if ( WAREHOUSE_BAY[i][:item] == item_one )
+        search_bay << WAREHOUSE_BAY[i][:shelf]
+      elsif ( WAREHOUSE_BAY[i][:item] == item_three)
+        search_bay << WAREHOUSE_BAY[i][:shelf]
+      elsif ( WAREHOUSE_BAY[i][:item] == item_two)
+        search_bay << WAREHOUSE_BAY[i][:shelf]
+      elsif item_four != nil
+        if ( WAREHOUSE_BAY[i][:item] == item_four)
+          search_bay << WAREHOUSE_BAY[i][:shelf]
+        end
+        
+      end
+     
+      i += 1
+
+    end
+
+     
+
+     for index in WAREHOUSE_BAY
+  
+      bays << index[:shelf]
+      index_number << WAREHOUSE_BAY.rindex(index)
+
+    end
+    
+
+   
+   for index in search_bay
+    
+    if ( bays.include?(index) )
+    
+      bays_in_order << index
+    
+    end
+   end
+
+   array_to_string = bays_in_order * (", ")
+
+  return array_to_string
+
+end
 
 
 
