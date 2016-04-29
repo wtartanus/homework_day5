@@ -1,6 +1,7 @@
 require "minitest/autorun"
 require_relative "../warehouse_picker_functions.rb"
 
+
 class TestWarehouse < Minitest::Test
 
 def test_item_at_bay
@@ -10,20 +11,20 @@ def test_item_at_bay
   assert_equal("word search", item_second)
 end
 
-# def test_bay_return_item
-#   item = bay_return_item("nail filer")
-#   assrt_equal("b5", item)
-# end
+def test_bay_return_item
+  item = bay_return_item("nail filer")
+  assert_equal("b5", item)
+end
 
-# def test_list_of_bays
-#   item = list_of_bays("b5", "b10", "b6")
-#   assrt_equal("nail filer, cookie jar, tooth paste", item)
-# end
+def test_list_of_bays
+  item = list_of_bays("b10", "b6", "b5")
+  assert_equal("nail filer, tooth paste, cookie jar", item)
+end
 
-# def test_list_of_items
-#   item = list_of_items("shoe lace", "rusty nail", "leg warmers")
-#   assrt_equal("c1, c9, c10", item)
-# end
+def test_list_of_items
+  item = list_of_items("shoe lace", "rusty nail", "leg warmers")
+  assert_equal("c1, c9, c10", item)
+end
 
 # #Further tasks
 

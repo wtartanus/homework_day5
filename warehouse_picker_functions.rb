@@ -1,3 +1,6 @@
+require( "pry-byebug" )
+
+
 #Create 3 array of hashes
  #First array values should be a10 .... a1 
  #Second array values shoud be c1 ... c10
@@ -37,6 +40,75 @@
     { shelf: "b9", item: "deodorant" },
     { shelf: "b10", item: "cookie jar" },
 
+]
 
 
-  ]
+
+def item_at_bay( bay )
+  for shelf in WAREHOUSE_BAY
+    return shelf[:item] if shelf[:shelf] == bay
+  end
+end
+
+def bay_return_item( item )
+  for shelf in WAREHOUSE_BAY
+    return shelf[:shelf] if shelf[:item] == item
+  end
+end
+
+def list_of_bays( bay_one, bay_two, bay_three )
+  
+  search_items = []
+#binding.pry
+  for shelf in WAREHOUSE_BAY
+
+    if ( shelf[:shelf] == bay_one)
+      search_items << shelf[:item]
+    elsif ( shelf[:shelf] == bay_three)
+      search_items << shelf[:item]
+    elsif ( shelf[:shelf] == bay_two)
+      search_items << shelf[:item]
+    end
+
+  end
+  
+  array_to_string = search_items * (", ")
+  return  array_to_string
+
+end
+
+def list_of_items( item_one, item_two , item_three)
+
+    search_bay = []
+  #binding.pry
+    for shelf in WAREHOUSE_BAY
+
+      if ( shelf[:item] == item_one)
+        search_bay << shelf[:shelf]
+      elsif ( shelf[:item] == item_three)
+        search_bay << shelf[:shelf]
+      elsif ( shelf[:item] == item_two)
+        search_bay << shelf[:shelf]
+      end
+
+    end
+    
+    array_to_string = search_bay * (", ")
+    return  array_to_string
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
